@@ -152,6 +152,10 @@ class AbstractArtDataset(Dataset):
         target_image[target_image < 1.0] = 0.0
         target_image[target_image >= 1.0] = 1.0
         
+        target_image += cropped_image
+        target_image[target_image < 1.0] = 0.0
+        target_image[target_image >= 1.0] = 1.0
+        
         sample = {'image': target_image, 'random_crop_image': cropped_image}
 
         if self.transform:

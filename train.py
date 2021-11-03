@@ -143,14 +143,14 @@ for epoch in range(num_epochs):
             print('[%d/%d][%d/%d]\tLoss_D: %.4f\tLoss_G: %.4f\tD(x): %.4f\tD(G(z)): %.4f / %.4f'
                   % (epoch, num_epochs, i, len(dataloader),
                      errD.item(), errG.item(), D_x, D_G_z1, D_G_z2))
-            # plt.figure()
-            
+            plt.figure()
+
             print(torch.histc(original_image[:, :, :, :].flatten(), bins=4, min=0.0, max=1.0))
             print(torch.histc(fake[:, :, :, :].flatten(), bins=4, min=0.0, max=1.0))
-            # show_landmarks_batch(fake.detach())
-            # plt.axis('off')
-            # plt.ioff()
-            # plt.show()
+            show_landmarks_batch(fake.detach())
+            plt.axis('off')
+            plt.ioff()
+            plt.savefig('fake.png')
 
         # Save Losses for plotting later
         G_losses.append(errG.item())
@@ -158,7 +158,7 @@ for epoch in range(num_epochs):
 
         iters += 1
 
-torch.save(netG, 'generator_model.torch')
+torch.save(netG.state_dict(), 'generator_model.torch')
 
 
 plt.figure(figsize=(10,5))
