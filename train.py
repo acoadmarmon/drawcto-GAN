@@ -89,7 +89,7 @@ for epoch in range(num_epochs):
     # For each batch in the dataloader
     for i, data in enumerate(dataloader, 0):
         original_image = data['image']
-        random_crop_image = data['random_crop_image']
+        random_crop_image = data['random_crop_image'].to(device)
         ############################
         # (1) Update D network: maximize log(D(x)) + log(1 - D(G(z)))
         ###########################
