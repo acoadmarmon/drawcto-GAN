@@ -147,7 +147,7 @@ for epoch in range(num_epochs):
 
             print(torch.histc(original_image[:, :, :, :].flatten(), bins=4, min=0.0, max=1.0))
             print(torch.histc(fake[:, :, :, :].flatten(), bins=4, min=0.0, max=1.0))
-            show_landmarks_batch(fake.detach())
+            show_landmarks_batch(fake.cpu().detach())
             plt.axis('off')
             plt.ioff()
             plt.savefig('fake.png')
