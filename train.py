@@ -90,15 +90,6 @@ for epoch in range(num_epochs):
     for i, data in enumerate(dataloader, 0):
         original_image = data['image']
         random_crop_image = data['random_crop_image'].to(device)
-        plt.figure()
-        show_landmarks_batch(original_image.detach())
-        plt.axis('off')
-        plt.ioff()
-        plt.show()
-        show_landmarks_batch(random_crop_image.detach())
-        plt.axis('off')
-        plt.ioff()
-        plt.show()
         ############################
         # (1) Update D network: maximize log(D(x)) + log(1 - D(G(z)))
         ###########################
@@ -119,10 +110,6 @@ for epoch in range(num_epochs):
         ## Train with all-fake batch\
         # Generate fake image batch with G
         fake = netG(random_crop_image.float())
-        show_landmarks_batch(fake.detach())
-        plt.axis('off')
-        plt.ioff()
-        plt.show()
         label.fill_(fake_label)
         # Classify all fake batch with D
         output = netD(fake.detach()).view(-1)
