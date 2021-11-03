@@ -120,7 +120,6 @@ class AbstractArtDataset(Dataset):
     def __getitem__(self, idx):
         if torch.is_tensor(idx):
             idx = idx.tolist()
-        print(idx)
         img_name = os.path.join(self.root_dir, self.image_names[idx])
 
         im = cv2.imread(img_name, cv2.IMREAD_UNCHANGED) 
