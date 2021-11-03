@@ -1,0 +1,4 @@
+.DS_Store
+data/processed_images/
+data/images/
+__pycache__/
