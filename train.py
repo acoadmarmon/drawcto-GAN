@@ -145,8 +145,8 @@ for epoch in range(num_epochs):
                      errD.item(), errG.item(), D_x, D_G_z1, D_G_z2))
             # plt.figure()
             
-            # print(torch.histc(original_image[:, :, :, :].flatten(), bins=4, min=0.0, max=1.0))
-            # print(torch.histc(fake[:, :, :, :].flatten(), bins=4, min=0.0, max=1.0))
+            print(torch.histc(original_image[:, :, :, :].flatten(), bins=4, min=0.0, max=1.0))
+            print(torch.histc(fake[:, :, :, :].flatten(), bins=4, min=0.0, max=1.0))
             # show_landmarks_batch(fake.detach())
             # plt.axis('off')
             # plt.ioff()
