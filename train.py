@@ -158,6 +158,12 @@ for epoch in range(num_epochs):
             plt.ioff()
             plt.savefig('real.png')
 
+            plt.figure()
+            show_landmarks_batch(random_crop_image.cpu().detach())
+            plt.axis('off')
+            plt.ioff()
+            plt.savefig('real_input.png')
+
         # Save Losses for plotting later
         G_losses.append(errG.item())
         D_losses.append(errD.item())
