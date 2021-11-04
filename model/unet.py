@@ -78,5 +78,5 @@ class ResNetUNet(nn.Module):
     x = torch.cat([x, x_original], dim=1)
     x = self.conv_original_size2(x)
     out = self.conv_last(x)
-
+    out = nn.LeakyReLU()(out)
     return out
