@@ -80,7 +80,7 @@ class ResNetUNet(nn.Module):
     out = self.conv_last(x)
     print(out.shape)
     for i in range(out.shape[0]):
-        top5k_values, top_5k_indices = torch.topk(-out[i].flatten(), 5000)
+        top5k_values, top_5k_indices = torch.topk(-out[i].flatten(), 250)
         #out = nn.LeakyReLU()(out)
         batch_indices = []
         c_indices = []
