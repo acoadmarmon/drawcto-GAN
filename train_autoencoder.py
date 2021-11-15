@@ -163,7 +163,7 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_dir',type=str,default='../trained-models/',help='The directory where the model will be stored.')
-    parser.add_argument('--model_name',type=str,default='covid-autoencoder')
+    parser.add_argument('--model_name',type=str,default='art-autoencoder')
     parser.add_argument('--dropout',type=float,default=.2,help='Weight decay for convolutions.')
     parser.add_argument('--learning_rate',type=float,default=0.001,help='Initial learning rate.')
     parser.add_argument('--lr_step_size',type=int,default=7)
