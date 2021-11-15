@@ -141,8 +141,8 @@ def main(args):
     criterion = None
     if args.model_type == 'autoencoder':
         model = unet.ResNetUNet(6)
-        #criterion = nn.MSELoss()
-        criterion = SSIM(window_size = 11)
+        criterion = nn.MSELoss()
+        #criterion = SSIM(window_size = 11)
     else:
         model = torchvision.models.resnet18(pretrained=True)
         num_features = model.fc.in_features
