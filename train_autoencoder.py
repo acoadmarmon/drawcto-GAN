@@ -35,7 +35,7 @@ def show_landmarks_batch(sample_batched):
       grid = utils.make_grid(images_batch)
       plt.imshow(grid.numpy().transpose((1, 2, 0)))
 
-def train_model(model, criterion, optimizer, scheduler, num_epochs=25, model_type='autoencoder', batch_size=16, model_save_dir='./'):
+def train_model(model, criterion, optimizer, scheduler, num_epochs=5, model_type='autoencoder', batch_size=16, model_save_dir='./'):
     since = time.time()
 
     dataloader = il.get_image_dataset('./data/processed_images/')
@@ -83,7 +83,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25, model_typ
 
                     if i % 10 == 0:
                         print('[%d/%d][%d/%d]\tLoss_G: %.4f'
-                            % (epoch, 25, i, len(dataloader),
+                            % (epoch, 5, i, len(dataloader),
                                 loss))
                         plt.figure()
 
