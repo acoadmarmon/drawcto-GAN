@@ -95,7 +95,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25, model_typ
                         plt.savefig('fake.png')
                         
                         plt.figure()
-                        show_landmarks_batch(original_image)
+                        show_landmarks_batch(original_image.cpu())
                         plt.axis('off')
                         plt.ioff()
                         plt.savefig('real.png')
