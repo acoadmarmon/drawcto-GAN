@@ -105,6 +105,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25, model_typ
                         plt.axis('off')
                         plt.ioff()
                         plt.savefig('real_input.png')
+                        plt.close()
 
                 # statistics
                 running_loss += loss.item()
@@ -168,7 +169,7 @@ if __name__ == "__main__":
     parser.add_argument('--learning_rate',type=float,default=0.001,help='Initial learning rate.')
     parser.add_argument('--lr_step_size',type=int,default=7)
     parser.add_argument('--lr_gamma', type=float,default=.1)
-    parser.add_argument('--epochs',type=int,default=25)
+    parser.add_argument('--epochs',type=int,default=5)
     parser.add_argument('--optimizer', type=str, default='adam')
     parser.add_argument('--batch-size',type=int,default=16)
     parser.add_argument('--model-type',type=str,default='autoencoder')
