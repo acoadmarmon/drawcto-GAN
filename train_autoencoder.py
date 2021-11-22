@@ -65,8 +65,6 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=5, model_type
             for i, data in enumerate(dataloaders[phase], 0):
                 original_image = data['image'].to(device).float()
                 random_crop_image = data['random_crop_image'].to(device).float()
-                print(original_image.shape)
-                print(random_crop_image.shape)
                 # zero the parameter gradients
                 optimizer.zero_grad()
 
