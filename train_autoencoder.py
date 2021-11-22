@@ -15,7 +15,7 @@ from torchvision import transforms, utils
 
 import image_loader as il
 
-from model import unet
+from model import unet, autoencoder
 import image_loader
 import subprocess
 import argparse
@@ -65,7 +65,8 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=5, model_type
             for i, data in enumerate(dataloaders[phase], 0):
                 original_image = data['image'].to(device).float()
                 random_crop_image = data['random_crop_image'].to(device).float()
-
+                print(original_image.shape)
+                print(random_crop_image.shape)
                 # zero the parameter gradients
                 optimizer.zero_grad()
 
@@ -141,7 +142,7 @@ def main(args):
     model = None
     criterion = None
     if args.model_type == 'autoencoder':
-        model = unet.ResNetUNet(6)
+        model = autoencoder.Autoencoder()
         criterion = nn.MSELoss()
         #criterion = SSIM(window_size = 11)
     else:
