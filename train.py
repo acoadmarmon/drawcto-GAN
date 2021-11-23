@@ -151,18 +151,21 @@ for epoch in range(num_epochs):
             plt.axis('off')
             plt.ioff()
             plt.savefig('fake.png')
+            plt.close()
             
             plt.figure()
             show_landmarks_batch(original_image)
             plt.axis('off')
             plt.ioff()
             plt.savefig('real.png')
+            plt.close()
 
             plt.figure()
             show_landmarks_batch(random_crop_image.cpu().detach())
             plt.axis('off')
             plt.ioff()
             plt.savefig('real_input.png')
+            plt.close()
 
         # Save Losses for plotting later
         G_losses.append(errG.item())
