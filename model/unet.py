@@ -78,8 +78,12 @@ class ResNetUNet(nn.Module):
     x = torch.cat([x, x_original], dim=1)
     x = self.conv_original_size2(x)
     out = self.conv_last(x)
+
+    final_shape = out.shape
+    out = out.view(out.size(0), -1)
     out -= out.min(1, keepdim=True)[0]
     out /= out.max(1, keepdim=True)[0]
+    out = out.view(final_shape[0], final_shape[1], final_shape[2], final_shape[3])
     # for i in range(out.shape[0]):
     #     top5k_values, top_5k_indices = torch.topk(-out[i].flatten(), 330)
     #     #out = nn.LeakyReLU()(out)
