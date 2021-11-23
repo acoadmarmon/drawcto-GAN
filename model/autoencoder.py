@@ -15,9 +15,9 @@ class Autoencoder(nn.Module):
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
             nn.Flatten(),
-            nn.Linear(in_features=32768, out_features=512)
+            nn.Linear(in_features=32768, out_features=2048)
         )
-        self.linear_decoding = nn.Linear(in_features=512, out_features=32768)
+        self.linear_decoding = nn.Linear(in_features=512, out_features=2048)
         self.decoder = nn.Sequential(
             nn.Upsample(scale_factor=2),
             nn.ReLU(),
@@ -35,19 +35,19 @@ class Autoencoder(nn.Module):
         x = self.linear_decoding(x)
         x = torch.reshape(x, (x.shape[0], 32, 32, 32))
         out = self.decoder(x)
-        for i in range(out.shape[0]):
-            top5k_values, top_5k_indices = torch.topk(-out[i].flatten(), 400)
-            #out = nn.LeakyReLU()(out)
-            batch_indices = []
-            c_indices = []
-            row_indices = []
-            col_indices = []
+        # for i in range(out.shape[0]):
+        #     top5k_values, top_5k_indices = torch.topk(-out[i].flatten(), 330)
+        #     #out = nn.LeakyReLU()(out)
+        #     batch_indices = []
+        #     c_indices = []
+        #     row_indices = []
+        #     col_indices = []
 
-            for j in list(top_5k_indices):
-                batch_indices.append(i)
-                c_indices.append(0)
-                row_indices.append(j % 256)
-                col_indices.append(j // 256)
-            out[batch_indices, c_indices, row_indices, col_indices] = 0.0
-            out[i, :, :, :][out[i, :, :, :] != 0.0] = 1.0
+        #     for j in list(top_5k_indices):
+        #         batch_indices.append(i)
+        #         c_indices.append(0)
+        #         row_indices.append(j % 256)
+        #         col_indices.append(j // 256)
+        #     out[batch_indices, c_indices, row_indices, col_indices] = 0.0
+        #     out[i, :, :, :][out[i, :, :, :] != 0.0] = 1.0
         return out
