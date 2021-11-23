@@ -1,4 +1,4 @@
-from model import unet
+from model import unet, autoencoder
 from model import discriminator as d
 import image_loader as il
 import torch
@@ -32,7 +32,7 @@ device = torch.device("cuda:0" if (torch.cuda.is_available() and ngpu > 0) else 
 print(device)
 
 # Create the generator
-netG = unet.ResNetUNet(6).to(device)
+netG = autoencoder.Autoencoder().to(device)
 
 # Apply the weights_init function to randomly initialize all weights
 #  to mean=0, stdev=0.02.
