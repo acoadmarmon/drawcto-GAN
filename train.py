@@ -32,7 +32,7 @@ device = torch.device("cuda:0" if (torch.cuda.is_available() and ngpu > 0) else 
 print(device)
 
 # Create the generator
-netG = autoencoder.Autoencoder().to(device)
+netG = unet.ResNetUNet(6).to(device)
 
 # Apply the weights_init function to randomly initialize all weights
 #  to mean=0, stdev=0.02.
