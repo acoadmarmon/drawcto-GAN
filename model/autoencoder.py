@@ -17,7 +17,7 @@ class Autoencoder(nn.Module):
             nn.Flatten(),
             nn.Linear(in_features=32768, out_features=2048)
         )
-        self.linear_decoding = nn.Linear(in_features=512, out_features=2048)
+        self.linear_decoding = nn.Linear(in_features=2048, out_features=32768)
         self.decoder = nn.Sequential(
             nn.Upsample(scale_factor=2),
             nn.ReLU(),
