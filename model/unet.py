@@ -79,19 +79,19 @@ class ResNetUNet(nn.Module):
     x = self.conv_original_size2(x)
     out = self.conv_last(x)
 
-    # for i in range(out.shape[0]):
-    #     top5k_values, top_5k_indices = torch.topk(-out[i].flatten(), 330)
-    #     #out = nn.LeakyReLU()(out)
-    #     batch_indices = []
-    #     c_indices = []
-    #     row_indices = []
-    #     col_indices = []
+    for i in range(out.shape[0]):
+        top5k_values, top_5k_indices = torch.topk(-out[i].flatten(), 330)
+        #out = nn.LeakyReLU()(out)
+        batch_indices = []
+        c_indices = []
+        row_indices = []
+        col_indices = []
 
-    #     for j in list(top_5k_indices):
-    #       batch_indices.append(i)
-    #       c_indices.append(0)
-    #       row_indices.append(j % 256)
-    #       col_indices.append(j // 256)
-    #     out[batch_indices, c_indices, row_indices, col_indices] = 0.0
-    #     out[i, :, :, :][out[i, :, :, :] != 0.0] = 1.0
+        for j in list(top_5k_indices):
+          batch_indices.append(i)
+          c_indices.append(0)
+          row_indices.append(j % 256)
+          col_indices.append(j // 256)
+        out[batch_indices, c_indices, row_indices, col_indices] = 0.0
+        out[i, :, :, :][out[i, :, :, :] != 0.0] = 1.0
     return out
