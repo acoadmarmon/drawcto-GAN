@@ -78,8 +78,7 @@ class ResNetUNet(nn.Module):
     x = torch.cat([x, x_original], dim=1)
     x = self.conv_original_size2(x)
     out = self.conv_last(x)
-    out[out < 0.0] = 0.0
-    out[out > 1.0] = 1.0
+    out = nn.Sigmoid()(out)
     # for i in range(out.shape[0]):
     #     top5k_values, top_5k_indices = torch.topk(-out[i].flatten(), 330)
     #     #out = nn.LeakyReLU()(out)
