@@ -35,8 +35,7 @@ class Autoencoder(nn.Module):
         x = self.linear_decoding(x)
         x = torch.reshape(x, (x.shape[0], 32, 32, 32))
         out = self.decoder(x)
-        out[out < 0.5] = 0.0
-        out[out >= 0.5 ] = 1.0
+        out = nn.LeakyReLU()(out)
         # for i in range(out.shape[0]):
         #     top5k_values, top_5k_indices = torch.topk(-out[i].flatten(), 330)
         #     #out = nn.LeakyReLU()(out)
