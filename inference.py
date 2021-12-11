@@ -21,7 +21,7 @@ def inference(image_path):
         res = (res*255).astype(np.uint8)              # scaled back up
         img = res
     else:
-        img = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+        img = im
     img = np.expand_dims(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY), -1).astype(float) / 255.0
     img = dt.Rescale((256,256))({'image': img, 'random_crop_image': img})['image']
     img = dt.ToTensor()({'image': img, 'random_crop_image': img})['image']
@@ -43,4 +43,4 @@ def inference(image_path):
     return img
 
 if __name__ == "__main__":
-    inference('./data/canvas.png')
+    inference('./new_canvas.png')
