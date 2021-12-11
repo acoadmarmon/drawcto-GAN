@@ -2,5 +2,4 @@
 data/processed_images/
 data/images/
 __pycache__/
-generator_model.torch
 
